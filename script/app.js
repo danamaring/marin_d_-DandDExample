@@ -16,6 +16,13 @@ let draggablePieces = piecesBoard.querySelectorAll("img");
 
 function switchImage() {
 	console.log(this);
+  //grab the corresponding bcg images
+  //and get it from the images folder (backGround1.jog as an example)
+  let bgImage = `./images/backGround${this.dataset.puzzleref}.jpg`;
+  //set the bcg image style
+  puzzleBoard.style.backgroundImage = `url(${bgImage})`;
+
+  //debugger;
 }
 
 puzzleSelectors.forEach(thumbnail => thumbnail.addEventListener("click", switchImage));
