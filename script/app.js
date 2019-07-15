@@ -11,13 +11,31 @@ const piecesBoard = document.querySelector(".puzzle-pieces"),
 
 let draggablePieces = piecesBoard.querySelectorAll("img");
 
+//arraws have are inexed and start at 0
+const imageNameArray = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
 
 //debugger;
 
 function switchImage() {
 	console.log(this);
-}
+  //grab the corresponding bcg images
+  //and get it from the images folder (backGround1.jog as an example)
+  let bgImage = `./images/backGround${this.dataset.puzzleref}.jpg`;
+  //set the bcg image style
+  puzzleBoard.style.backgroundImage = `url(${bgImage})`;
 
+  //debugger;
+
+//work on switching the right-hand images so that they match the buttons at the bottom.
+draggablePieces.forEach((image, index) => {
+  // log the image and the currnt index
+  //console.log(image, index);
+
+  //try to change each image source
+  image.src = `images/${imageNameArray[index]}${this.dataset.puzzleref}.jpg`;
+  //debugger;
+});
+}
 puzzleSelectors.forEach(thumbnail => thumbnail.addEventListener("click", switchImage));
 
 
