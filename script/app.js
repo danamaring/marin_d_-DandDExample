@@ -25,7 +25,14 @@ function switchImage() {
   puzzleBoard.style.backgroundImage = `url(${bgImage})`;
 
   //debugger;
-
+  //GET THE PIECES BACK TO WHERE THEY BELONG
+  dropZones.forEach(zone => {
+    //if a zone has a child, then grab it and put it back on the left hand side.
+    if (zone.childElementCount == 1) {
+      piece = zone.firstElementChild;
+      piecesBoard.appendChild(piece);
+    }
+  })
 //work on switching the right-hand images so that they match the buttons at the bottom.
 draggablePieces.forEach((image, index) => {
   // log the image and the currnt index
@@ -63,6 +70,16 @@ dropZones.forEach(zone => {
 zone.addEventListener("drop", function(e) {
 	e.preventDefault();
 	console.log("you dropped sumpin on me");
+
+
+//check to see if the element we're dropping on has any children
+//(the childElementCount property).
+//If it does, exit the function with a return statement (nothing below the return will run)
+
+//  YOU CAN'T HAVE TWO PIECES ON THE SAME SPOT
+  if (this.childElementCount == 1) {
+    console.log('one-child family, go away!!!');
+    return; }
 
 	let draggedElement = e.dataTransfer.getData("text/plain");
 	console.log('you dragged: ', draggedElement);
